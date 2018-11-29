@@ -3,12 +3,12 @@
 skips=$(git skips)
 if [ "${skips}" != "" ]; then
   current_branch=$(\git symbolic-ref --short HEAD)
-  if [ "$(git rev-parse --verify ${current_branch}/skip 2>/dev/null)" != "" ]; then
+  if [ "$(git rev-parse --verify ${current_branch}-skip 2>/dev/null)" != "" ]; then
 
-    \git checkout ${current_branch}/skip
+    \git checkout ${current_branch}-skip
   else
     # first
-    \git checkout -b ${current_branch}/skip
+    \git checkout -b ${current_branch}-skip
   fi
 
   \git unskip-all && \

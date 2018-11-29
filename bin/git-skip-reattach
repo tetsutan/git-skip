@@ -2,11 +2,11 @@
 
 current_branch=$(\git symbolic-ref --short HEAD)
 
-if [ "$(git rev-parse --verify ${current_branch}/skip 2>/dev/null)" != "" ]; then
-  \git checkout ${current_branch}/skip && \
+if [ "$(git rev-parse --verify ${current_branch}-skip 2>/dev/null)" != "" ]; then
+  \git checkout ${current_branch}-skip && \
   \git reset ${current_branch} && \
   \git checkout ${current_branch} && \
   \git skip-all && \
-  \git branch -d ${current_branch}/skip
+  \git branch -d ${current_branch}-skip
 fi
 
