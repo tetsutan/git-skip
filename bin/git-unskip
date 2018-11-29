@@ -1,2 +1,6 @@
 #!/bin/sh
+if [ ! -d ".git" ]; then
+  echo "You should use git-skip utils on git-root dir" 1>&2
+  exit 1
+fi
 \git update-index --no-skip-worktree $@
