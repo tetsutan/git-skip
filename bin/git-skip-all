@@ -1,0 +1,2 @@
+#!/bin/sh
+\git skip $(\git status --porcelain | \sed s/^...//)

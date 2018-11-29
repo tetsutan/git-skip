@@ -1,0 +1,19 @@
+#!/bin/sh
+
+skips=$(git skips)
+if [ "${skips}" != "" ]; then
+  current_branch=$(\git symbolic-ref --short HEAD)
+  if [ "$(git rev-parse --verify ${current_branch}-skip 2>/dev/null)" != "" ]; then
+
+    \git checkout ${current_branch}-skip
+  else
+    # first
+    \git checkout -b ${current_branch}-skip
+  fi
+
+  \git unskip-all && \
+  \git add -A && \
+  \git commit -m "!!SKIP-REFUGE at $(date)" && \
+  \git co ${current_branch}
+fi
+
