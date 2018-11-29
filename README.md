@@ -3,7 +3,7 @@
 skip-worktreeを簡単に管理するツール
 
 
-# example
+# Example
 
 ```
 $ cd YOUR_REPO/
@@ -18,7 +18,7 @@ $ git status
   >> nothing to commit, working tree clean
 ```
 
-# commands
+# Commands
 
 #### skip
 Skip [file]
@@ -33,7 +33,7 @@ Skip all unstage
 Unskip all skipped
 
 #### skips
-Skipped files
+List skipped files
 
 #### skip-refuge
 Commit skipped files to new branch ( named `{CURRENT_BRANCH_NAME}-skip` )
