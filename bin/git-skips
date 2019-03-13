@@ -1,6 +1,12 @@
 #!/bin/sh
-if [ ! -d ".git" ]; then
-  echo "You should use git-skip utils on git-root dir" 1>&2
-  exit 1
+if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+
+  dir_or_path=$@
+  if [ -d "$dir_or_path" ]; then
+    \git ls-files -v $dir_or_path | \grep "^S" | \sed 's/^S //g'
+  else
+    root=$(\git rev-parse --show-toplevel)
+    \git ls-files -v $root | \grep "^S" | \sed 's/^S //g'
+  fi
+
 fi
-\git ls-files -v | \grep "^S" | \sed 's/^S //g'

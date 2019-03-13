@@ -1,6 +1,2 @@
 #!/bin/sh
-if [ ! -d ".git" ]; then
-  echo "You should use git-skip utils on git-root dir" 1>&2
-  exit 1
-fi
-\git unskip $(\git skips)
+\git skips | xargs -L 1 git unskip

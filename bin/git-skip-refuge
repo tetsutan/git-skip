@@ -1,9 +1,4 @@
 #!/bin/sh
-if [ ! -d ".git" ]; then
-  echo "You should use git-skip utils on git-root dir" 1>&2
-  exit 1
-fi
-
 skips=$(git skips)
 if [ "${skips}" != "" ]; then
   current_branch=$(\git symbolic-ref --short HEAD)
@@ -16,7 +11,7 @@ if [ "${skips}" != "" ]; then
   fi
 
   \git unskip-all && \
-  \git add -A && \
+  \git add ${skips} && \
   \git commit -m "!!SKIP-REFUGE at $(date)" && \
   \git co ${current_branch}
 fi
