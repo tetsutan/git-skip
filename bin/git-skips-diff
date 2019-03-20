@@ -1,0 +1,10 @@
+#!/bin/sh
+if \git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+  skips=$(git skips)
+  if [ "${skips}" != "" ]; then
+    \git unskip-all
+    \git diff $skips
+    \git skip $skips
+  fi
+fi
+
