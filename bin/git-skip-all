@@ -1,7 +1,8 @@
 #!/bin/sh
 if \git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
-  root=$(\git rev-parse --show-toplevel)
-  pushd $root > /dev/null
-  \git status --porcelain | \sed s/^...// | xargs -L 1 git skip
-  popd > /dev/null
+  cdup=$(\git rev-parse --show-cdup)
+  if [ ! -d "$cdup" ]; then
+    cdup="."
+  fi
+  \git skip $cdup
 fi

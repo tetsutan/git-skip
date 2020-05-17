@@ -6,6 +6,7 @@ if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
   if [ -d "$dir_or_path" ]; then
     \git skips $dir_or_path | xargs -L 1 git unskip
   else
+    echo "unskip: $dir_or_path"
     \git update-index --no-skip-worktree $dir_or_path
   fi
 fi
